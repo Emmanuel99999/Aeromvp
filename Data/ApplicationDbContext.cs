@@ -1,5 +1,6 @@
 using Aeromvp.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq; // 👈 importante para SelectMany
 
 namespace Aeromvp.Data
 {
@@ -24,12 +25,42 @@ namespace Aeromvp.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Relación 1:1 Booking-Payment con Payment como dependiente (FK BookingId)
+            // =========================
+            // Booking <-> Payment (1:1)
+            // =========================
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Payment)
                 .WithOne(p => p.Booking)
                 .HasForeignKey<Payment>(p => p.BookingId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // =========================
+            // Flight <-> Booking (1:N)
+            // =========================
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Flight)
+                .WithMany(f => f.Bookings)
+                .HasForeignKey(b => b.FlightId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // =========================
+            // Ticket <-> Fare (1:N)
+            // =========================
+            modelBuilder.Entity<Ticket>()
+                .HasOne(t => t.Fare)
+                .WithMany(f => f.Tickets)
+                .HasForeignKey(t => t.FareId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // =========================================
+            // REGRA GENERAL: quitar Cascade en todo FK
+            // =========================================
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes()
+                         .SelectMany(e => e.GetForeignKeys())
+                         .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.NoAction;
+            }
         }
     }
 }

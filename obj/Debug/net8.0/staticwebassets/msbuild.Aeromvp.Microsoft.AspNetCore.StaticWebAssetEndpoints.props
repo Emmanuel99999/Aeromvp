@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Aeromvp.an2xfdctq8.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"an2xfdctq8"},{"Name":"integrity","Value":"sha256-pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04="},{"Name":"label","Value":"_content/Aeromvp/Aeromvp.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Nov 2025 04:02:16 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Nov 2025 19:59:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Aeromvp/Aeromvp.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Aeromvp.an2xfdctq8.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Nov 2025 04:02:16 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1125"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pk5OfF0AKe8Z0H9tbJUqgyXV8ZNZ7oXeOYomEx5Gg04=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Nov 2025 19:59:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Aeromvp/css/home.148q8aqece.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\home.css'))</AssetFile>

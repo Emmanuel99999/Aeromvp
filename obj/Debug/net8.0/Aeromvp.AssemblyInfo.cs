@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Aeromvp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc2732630d6b20b1c248f514ef015c7133d53fc9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8163c086b3240677c428a5688f7ab9f1577fc73f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Aeromvp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Aeromvp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

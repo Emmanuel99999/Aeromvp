@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\views\\passenger\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:views\\passenger\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,19 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Views\\Passenger\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Views\\Passenger\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Views\\Passenger\\Delete.cshtml",
-              "RelativeToolTip": "Views\\Passenger\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-23T18:57:42.058Z",
-              "EditorCaption": ""
             }
           ]
         }
