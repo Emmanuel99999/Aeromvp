@@ -1,0 +1,224 @@
+﻿@model Aeromvp.ViewModels.FlightResultViewModel
+
+@{
+    ViewData["Title"] = "Resultados de vuelos — TuAerolínea";
+
+    // Evitar NullReference si el controlador no envía modelo
+    var originCity = Model?.OriginCity ?? "Origen";
+    var originCode = Model?.OriginCode ?? "ORIG";
+    var destinationCity = Model?.DestinationCity ?? "Destino";
+    var destinationCode = Model?.DestinationCode ?? "DEST";
+
+    var departureDateStr = (Model?.DepartureDate ?? DateTime.Today).ToShortDateString();
+    var returnDateStr = Model?.ReturnDate?.ToShortDateString();
+
+    var adults = Model?.Adults ?? 1;
+    var children = Model?.Children ?? 0;
+    var infants = Model?.Infants ?? 0;
+
+    var currentPage = Model?.CurrentPage ?? 1;
+    var totalPages = Model?.TotalPages ?? 1;
+
+    // Usar nombre completo para evitar problemas de using
+    var flights = Model?.Flights
+        ?? new System.Collections.Generic.List<Aeromvp.ViewModels.FlightResultViewModel.FlightCard>();
+}
+
+<section class="search-summary">
+    <div class="container summary-inner">
+
+        <div class="route">
+            <strong>@originCity (@originCode)</strong>
+            →
+            <strong>@destinationCity (@destinationCode)</strong>
+
+            <span class="chip">Ida: @departureDateStr</span>
+
+            @if (!string.IsNullOrEmpty(returnDateStr))
+            {
+                <span class="chip">Regreso: @returnDateStr</span>
+            }
+
+            <span class="chip">Adultos: @adults</span>
+            <span class="chip">Niños: @children</span>
+            <span class="chip">Infantes: @infants</span>
+        </div>
+
+        <div class="actions">
+            <a asp-controller="Flight" asp-action="Search" class="btn btn-ghost">Editar búsqueda</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Nueva búsqueda</a>
+        </div>
+
+    </div>
+</section>
+
+<main class="container results-layout">
+
+    <!-- FILTERS -->
+    <aside class="filters" aria-label="Filtros">
+
+        <h2 class="filters-title">Filtrar</h2>
+
+        <div class="filter-group">
+            <label class="filter-label">Ordenar por</label>
+
+            <div class="sort-options" role="radiogroup">
+                <label class="radio">
+                    <input type="radio" name="sort" checked />
+                    <span>Precio</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="sort" />
+                    <span>Más rápido</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="sort" />
+                    <span>Más corto</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label for="priceRange" class="filter-label">
+                Precio máximo: <span id="priceValue">$150.000</span>
+            </label>
+
+            <input id="priceRange" type="range" min="49900" max="999999" value="150000" />
+
+            <div class="range-scale">
+                <span>$49.900</span>
+                <span>$999.999</span>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Escalas</label>
+            <div class="checks">
+                <label class="check"><input type="checkbox" checked /> Directo</label>
+                <label class="check"><input type="checkbox" /> 1 escala</label>
+                <label class="check"><input type="checkbox" /> 2+ escalas</label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Horario salida</label>
+            <div class="chips">
+                <button class="chip chip-toggle">Mañana</button>
+                <button class="chip chip-toggle active">Tarde</button>
+                <button class="chip chip-toggle">Noche</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">Aliados Aerolíneas</label>
+            <input type="text" class="input" placeholder="Buscar aerolínea aliada…" />
+        </div>
+
+        <button class="btn btn-ghost full">Reiniciar filtros</button>
+
+    </aside>
+
+    <!-- RESULTS -->
+    <section class="results" aria-label="Resultados">
+
+        @if (!flights.Any())
+        {
+            <p>No hay vuelos para mostrar aún. Realiza una búsqueda.</p>
+        }
+        else
+        {
+            @foreach (var f in flights)
+            {
+                <article class="flight-card">
+
+                    <div class="airline">
+                        <span class="logo" aria-hidden="true">🟦</span>
+
+                        <div>
+                            <strong>@f.AirlineName</strong>
+                            <small>@f.FlightNumber • @f.CabinClass</small>
+                        </div>
+                    </div>
+
+                    <div class="times">
+
+                        <div class="time-col">
+                            <div class="time">@f.DepartureTimeUtc.ToLocalTime().ToString("HH:mm")</div>
+                            <div class="city">@f.OriginCode</div>
+                        </div>
+
+                        <div class="duration">
+                            <span class="line" aria-hidden="true"></span>
+                            <small>@f.DurationText • @f.StopsText</small>
+                        </div>
+
+                        <div class="time-col">
+                            <div class="time">@f.ArrivalTimeUtc.ToLocalTime().ToString("HH:mm")</div>
+                            <div class="city">@f.DestinationCode</div>
+                        </div>
+
+                    </div>
+
+                    <div class="price-cta">
+
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">@f.Price.ToString("N0")</span>
+                            <small>COP</small>
+                        </div>
+
+                        <a asp-controller="Booking"
+                           asp-action="Select"
+                           asp-route-id="@f.FlightId"
+                           class="btn btn-primary">
+                            Seleccionar
+                        </a>
+
+                        <button class="btn btn-ghost sm">Detalles</button>
+
+                    </div>
+
+                </article>
+            }
+        }
+
+        <nav class="pagination" aria-label="Paginación">
+            <button class="btn btn-ghost sm" disabled>Anterior</button>
+            <span class="page-info">Página @currentPage de @totalPages</span>
+            <button class="btn btn-ghost sm">Siguiente</button>
+        </nav>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <small>© 2025 RapidoOchoa — Rápido, cómodo y seguro.</small>
+        <div class="footer-links">
+            <a href="#">Términos</a>
+            <a href="#">Privacidad</a>
+            <a href="#">Contacto</a>
+        </div>
+    </div>
+</footer>
+
+@section Scripts {
+    <script>
+        const range = document.getElementById('priceRange');
+        const label = document.getElementById('priceValue');
+
+        if (range && label) {
+            const format = v => '$' + Number(v).toLocaleString();
+            label.textContent = format(range.value);
+
+            range.addEventListener('input', () => {
+                label.textContent = format(range.value);
+            });
+        }
+
+        document.querySelectorAll('.chip-toggle').forEach(chip => {
+            chip.addEventListener('click', () => chip.classList.toggle('active'));
+        });
+    </script>
+}
