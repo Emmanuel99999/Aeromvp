@@ -1,0 +1,109 @@
+@model Aeromvp.Models.Flight
+@{
+    ViewData["Title"] = "Detalle de vuelo";
+}
+
+<h1>Detalle de vuelo</h1>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Volver al inicio</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="text-muted">Vuelo</div>
+                <div class="fw-bold">@Model.FlightNumber</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Ruta</div>
+                <div class="fw-bold">@Model.OriginAirportCode → @Model.DestinationAirportCode</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Salida</div>
+                <div class="fw-bold">@Model.DepartureTimeUtc.ToLocalTime().ToString("g")</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Llegada</div>
+                <div class="fw-bold">@Model.ArrivalTimeUtc.ToLocalTime().ToString("g")</div>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-md-3">
+                <div class="text-muted">Duración</div>
+                <div class="fw-bold">@Model.DurationMinutes min</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Estado</div>
+                <div class="fw-bold">@Model.Status</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Operadora</div>
+                <div class="fw-bold">@Model.OperatingAirline ?? "-"</div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-muted">Comercial</div>
+                <div class="fw-bold">@Model.MarketingAirline ?? "-"</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Legs?.Any() == true)
+{
+    <h4>Tramos</h4>
+    <table class="table table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Salida</th>
+                <th>Llegada</th>
+                <th>Duración</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var leg in Model.Legs.OrderBy(l => l.SegmentNumber))
+        {
+            <tr>
+                <td>@leg.SegmentNumber</td>
+                <td>@leg.OriginAirportCode</td>
+                <td>@leg.DestinationAirportCode</td>
+                <td>@leg.DepartureTimeUtc.ToLocalTime().ToString("g")</td>
+                <td>@leg.ArrivalTimeUtc.ToLocalTime().ToString("g")</td>
+                <td>@leg.DurationMinutes min</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@if (Model.Fares?.Any() == true)
+{
+    <h4 class="mt-4">Tarifas</h4>
+    <table class="table table-sm table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Tipo</th>
+                <th>Cabina</th>
+                <th>Reembolso</th>
+                <th>Cambios</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var fare in Model.Fares.OrderBy(f => f.TotalPrice))
+        {
+            <tr>
+                <td>@fare.FareType</td>
+                <td>@fare.CabinClass ?? "-"</td>
+                <td>@(fare.AllowRefund ? "Sí" : "No")</td>
+                <td>@(fare.AllowChanges ? "Sí" : "No")</td>
+                <td>@fare.TotalPrice.ToString("C")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

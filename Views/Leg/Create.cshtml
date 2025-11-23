@@ -1,0 +1,80 @@
+@model Aeromvp.Models.Leg
+@{
+    ViewData["Title"] = "Crear tramo";
+    var flights = ViewBag.Flights as List<Aeromvp.Models.Flight> ?? new();
+}
+
+<h1>Crear tramo</h1>
+
+<form asp-action="Create" method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">Vuelo</label>
+            <select asp-for="FlightId" class="form-select" required>
+                <option value="">Seleccione vuelo</option>
+                @foreach (var f in flights)
+                {
+                    <option value="@f.FlightId">@($"{f.FlightNumber} {f.OriginAirportCode}-{f.DestinationAirportCode}")</option>
+                }
+            </select>
+            <span asp-validation-for="FlightId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="SegmentNumber" class="form-label"></label>
+            <input asp-for="SegmentNumber" class="form-control" type="number" min="1" />
+            <span asp-validation-for="SegmentNumber" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="CabinClass" class="form-label"></label>
+            <input asp-for="CabinClass" class="form-control" />
+            <span asp-validation-for="CabinClass" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-3">
+            <label asp-for="OriginAirportCode" class="form-label"></label>
+            <input asp-for="OriginAirportCode" class="form-control" maxlength="3" />
+            <span asp-validation-for="OriginAirportCode" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="DestinationAirportCode" class="form-label"></label>
+            <input asp-for="DestinationAirportCode" class="form-control" maxlength="3" />
+            <span asp-validation-for="DestinationAirportCode" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="AvailableSeats" class="form-label"></label>
+            <input asp-for="AvailableSeats" class="form-control" type="number" min="1" />
+            <span asp-validation-for="AvailableSeats" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="DurationMinutes" class="form-label"></label>
+            <input asp-for="DurationMinutes" class="form-control" type="number" min="1" />
+            <span asp-validation-for="DurationMinutes" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-6">
+            <label asp-for="DepartureTimeUtc" class="form-label"></label>
+            <input asp-for="DepartureTimeUtc" class="form-control" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+            <span asp-validation-for="DepartureTimeUtc" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ArrivalTimeUtc" class="form-label"></label>
+            <input asp-for="ArrivalTimeUtc" class="form-control" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+            <span asp-validation-for="ArrivalTimeUtc" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

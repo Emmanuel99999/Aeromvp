@@ -1,0 +1,33 @@
+@model Aeromvp.Models.Fare
+@{
+    ViewData["Title"] = "Eliminar tarifa";
+}
+
+<h1>Eliminar tarifa</h1>
+
+<div class="alert alert-warning">
+    ¿Confirma que desea eliminar la tarifa <strong>@Model.FareType</strong>?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">@(Model.Flight != null ? $"{Model.Flight.FlightNumber} {Model.Flight.OriginAirportCode}-{Model.Flight.DestinationAirportCode}" : "-")</dd>
+
+    <dt class="col-sm-3">Cabina</dt>
+    <dd class="col-sm-9">@Model.CabinClass ?? "-"</dd>
+
+    <dt class="col-sm-3">Total</dt>
+    <dd class="col-sm-9">@Model.TotalPrice.ToString("C")</dd>
+
+    <dt class="col-sm-3">Reembolso</dt>
+    <dd class="col-sm-9">@((Model.AllowRefund ? "Permitido" : "No"))</dd>
+
+    <dt class="col-sm-3">Cambios</dt>
+    <dd class="col-sm-9">@((Model.AllowChanges ? "Permitidos" : "No"))</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="FareId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

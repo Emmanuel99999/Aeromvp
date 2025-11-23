@@ -1,0 +1,24 @@
+@model Aeromvp.Models.Passenger
+@{
+    ViewData["Title"] = "Eliminar pasajero";
+}
+
+<h1>Eliminar pasajero</h1>
+
+<div class="alert alert-warning">
+    ¿Confirma que desea eliminar al pasajero <strong>@Model.FirstName @Model.LastName</strong>?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Documento</dt>
+    <dd class="col-sm-9">@Model.DocumentType @Model.DocumentNumber</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Email</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="PassengerId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,39 @@
+@model Aeromvp.Models.Booking
+@{
+    ViewData["Title"] = "Eliminar reserva";
+}
+
+<h1>Eliminar reserva</h1>
+
+<div class="alert alert-warning">
+    ¿Confirma que desea eliminar la reserva <strong>@Model.LocatorCode</strong>?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Pasajero</dt>
+    <dd class="col-sm-9">@(Model.Passenger != null ? $"{Model.Passenger.FirstName} {Model.Passenger.LastName}" : "-")</dd>
+
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">
+        @if (Model.Flight != null)
+        {
+            <span>@Model.Flight.FlightNumber (@Model.Flight.OriginAirportCode - @Model.Flight.DestinationAirportCode)</span>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt class="col-sm-3">Estado</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+
+    <dt class="col-sm-3">Total</dt>
+    <dd class="col-sm-9">@Model.TotalPrice.ToString("C")</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="BookingId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

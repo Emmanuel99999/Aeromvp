@@ -1,0 +1,60 @@
+@model Aeromvp.Models.Seat
+@{
+    ViewData["Title"] = "Crear asiento";
+}
+
+<h1>Crear asiento</h1>
+
+<form asp-action="Create" method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label asp-for="LegId" class="form-label"></label>
+            <select asp-for="LegId" class="form-select" asp-items="@(ViewData["LegId"] as Microsoft.AspNetCore.Mvc.Rendering.SelectList)"></select>
+            <span asp-validation-for="LegId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="SeatNumber" class="form-label"></label>
+            <input asp-for="SeatNumber" class="form-control" />
+            <span asp-validation-for="SeatNumber" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="CabinClass" class="form-label"></label>
+            <input asp-for="CabinClass" class="form-control" />
+            <span asp-validation-for="CabinClass" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-4">
+            <label asp-for="SeatType" class="form-label"></label>
+            <input asp-for="SeatType" class="form-control" />
+            <span asp-validation-for="SeatType" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ExtraFee" class="form-label"></label>
+            <input asp-for="ExtraFee" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="ExtraFee" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+            <div class="form-check me-3">
+                <input asp-for="IsAvailable" class="form-check-input" />
+                <label class="form-check-label" asp-for="IsAvailable"></label>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsBlocked" class="form-check-input" />
+                <label class="form-check-label" asp-for="IsBlocked"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

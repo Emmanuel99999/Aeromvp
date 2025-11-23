@@ -1,0 +1,103 @@
+@model Aeromvp.Models.Fare
+@{
+    ViewData["Title"] = "Crear tarifa";
+    var flights = ViewData["Flights"] as List<Aeromvp.Models.Flight> ?? new();
+}
+
+<h1>Crear tarifa</h1>
+
+<form asp-action="Create" method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Vuelo</label>
+            <select asp-for="FlightId" class="form-select" required>
+                <option value="">Seleccione vuelo</option>
+                @foreach (var f in flights)
+                {
+                    <option value="@f.FlightId">@($"{f.FlightNumber} {f.OriginAirportCode}-{f.DestinationAirportCode}")</option>
+                }
+            </select>
+            <span asp-validation-for="FlightId" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="FareType" class="form-label"></label>
+            <input asp-for="FareType" class="form-control" />
+            <span asp-validation-for="FareType" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-3">
+            <label asp-for="BaseFare" class="form-label"></label>
+            <input asp-for="BaseFare" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="BaseFare" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="Taxes" class="form-label"></label>
+            <input asp-for="Taxes" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="Taxes" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="AdditionalFees" class="form-label"></label>
+            <input asp-for="AdditionalFees" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="AdditionalFees" class="text-danger"></span>
+        </div>
+        <div class="col-md-3">
+            <label asp-for="TotalPrice" class="form-label"></label>
+            <input asp-for="TotalPrice" class="form-control" type="number" step="0.01" min="0" readonly />
+            <span class="form-text">Se calcula automáticamente.</span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-4">
+            <label asp-for="CabinClass" class="form-label"></label>
+            <input asp-for="CabinClass" class="form-control" />
+            <span asp-validation-for="CabinClass" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 d-flex align-items-center">
+            <div class="form-check me-3">
+                <input asp-for="AllowRefund" class="form-check-input" />
+                <label class="form-check-label" asp-for="AllowRefund"></label>
+            </div>
+            <div class="form-check">
+                <input asp-for="AllowChanges" class="form-check-input" />
+                <label class="form-check-label" asp-for="AllowChanges"></label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Conditions" class="form-label"></label>
+            <textarea asp-for="Conditions" class="form-control" rows="2"></textarea>
+            <span asp-validation-for="Conditions" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        (function () {
+            const base = document.getElementById('BaseFare');
+            const taxes = document.getElementById('Taxes');
+            const fees = document.getElementById('AdditionalFees');
+            const total = document.getElementById('TotalPrice');
+
+            const recalc = () => {
+                const b = parseFloat(base.value) || 0;
+                const t = parseFloat(taxes.value) || 0;
+                const f = parseFloat(fees.value) || 0;
+                total.value = (b + t + f).toFixed(2);
+            };
+
+            [base, taxes, fees].forEach(el => el?.addEventListener('input', recalc));
+            recalc();
+        })();
+    </script>
+}

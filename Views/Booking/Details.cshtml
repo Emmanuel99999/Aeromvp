@@ -1,0 +1,55 @@
+@model Aeromvp.Models.Booking
+@{
+    ViewData["Title"] = "Detalle de reserva";
+}
+
+<h1>Detalle de reserva</h1>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.BookingId">Editar</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Código localizador</dt>
+    <dd class="col-sm-9">@Model.LocatorCode</dd>
+
+    <dt class="col-sm-3">Pasajero</dt>
+    <dd class="col-sm-9">@(Model.Passenger != null ? $"{Model.Passenger.FirstName} {Model.Passenger.LastName}" : "-")</dd>
+
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">
+        @if (Model.Flight != null)
+        {
+            <span>@Model.Flight.FlightNumber (@Model.Flight.OriginAirportCode - @Model.Flight.DestinationAirportCode)</span>
+        }
+        else
+        {
+            <span>-</span>
+        }
+    </dd>
+
+    <dt class="col-sm-3">Tarifa</dt>
+    <dd class="col-sm-9">@Model.Fare?.FareType ?? "-"</dd>
+
+    <dt class="col-sm-3">Estado</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+
+    <dt class="col-sm-3">Precio total</dt>
+    <dd class="col-sm-9">@Model.TotalPrice.ToString("C")</dd>
+
+    <dt class="col-sm-3">Expira</dt>
+    <dd class="col-sm-9">@Model.ExpiresAtUtc.ToLocalTime().ToString("g")</dd>
+
+    <dt class="col-sm-3">Pago</dt>
+    <dd class="col-sm-9">@Model.PaymentId?.ToString() ?? "Sin asignar"</dd>
+
+    <dt class="col-sm-3">Creada</dt>
+    <dd class="col-sm-9">@Model.CreatedAtUtc.ToLocalTime().ToString("g")</dd>
+
+    @if (Model.UpdatedAtUtc.HasValue)
+    {
+        <dt class="col-sm-3">Actualizada</dt>
+        <dd class="col-sm-9">@Model.UpdatedAtUtc.Value.ToLocalTime().ToString("g")</dd>
+    }
+</dl>

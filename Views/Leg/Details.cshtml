@@ -1,0 +1,40 @@
+@model Aeromvp.Models.Leg
+@{
+    ViewData["Title"] = "Detalle de tramo";
+}
+
+<h1>Detalle de tramo</h1>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.LegId">Editar</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">@(Model.Flight != null ? Model.Flight.FlightNumber : "-")</dd>
+
+    <dt class="col-sm-3">Segmento</dt>
+    <dd class="col-sm-9">@Model.SegmentNumber</dd>
+
+    <dt class="col-sm-3">Origen</dt>
+    <dd class="col-sm-9">@Model.OriginAirportCode</dd>
+
+    <dt class="col-sm-3">Destino</dt>
+    <dd class="col-sm-9">@Model.DestinationAirportCode</dd>
+
+    <dt class="col-sm-3">Salida</dt>
+    <dd class="col-sm-9">@Model.DepartureTimeUtc.ToLocalTime().ToString("g")</dd>
+
+    <dt class="col-sm-3">Llegada</dt>
+    <dd class="col-sm-9">@Model.ArrivalTimeUtc.ToLocalTime().ToString("g")</dd>
+
+    <dt class="col-sm-3">Duración</dt>
+    <dd class="col-sm-9">@Model.DurationMinutes min</dd>
+
+    <dt class="col-sm-3">Cabina</dt>
+    <dd class="col-sm-9">@Model.CabinClass ?? "-"</dd>
+
+    <dt class="col-sm-3">Asientos disponibles</dt>
+    <dd class="col-sm-9">@Model.AvailableSeats</dd>
+</dl>

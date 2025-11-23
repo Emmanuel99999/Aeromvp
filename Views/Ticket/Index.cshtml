@@ -1,0 +1,41 @@
+@model IEnumerable<Aeromvp.Models.Ticket>
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Tickets</h1>
+    <a class="btn btn-primary" asp-action="Create">Nuevo ticket</a>
+</div>
+
+<table class="table table-striped table-bordered align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Número</th>
+            <th>Pasajero</th>
+            <th>Reserva</th>
+            <th>Vuelo</th>
+            <th>Estado</th>
+            <th>Precio</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TicketNumber</td>
+            <td>@(item.Passenger != null ? $"{item.Passenger.FirstName} {item.Passenger.LastName}" : "-")</td>
+            <td>@(item.Booking != null ? item.Booking.LocatorCode : $"Booking {item.BookingId}")</td>
+            <td>@(item.Flight != null ? item.Flight.FlightNumber : $"Flight {item.FlightId}")</td>
+            <td>@item.Status</td>
+            <td>@item.FinalPrice.ToString("C")</td>
+            <td class="text-end">
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.TicketId">Detalles</a>
+                <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@item.TicketId">Editar</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.TicketId">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

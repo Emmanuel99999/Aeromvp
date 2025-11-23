@@ -1,0 +1,74 @@
+@model Aeromvp.Models.Payment
+@{
+    ViewData["Title"] = "Editar pago";
+    string[] methods = { "Card", "PSE", "Paypal" };
+    string[] statusOptions = { "Pending", "Approved", "Rejected", "Refunded" };
+}
+
+<h1>Editar pago</h1>
+
+<form asp-action="Edit" method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <input type="hidden" asp-for="PaymentId" />
+
+    <div class="mb-3">
+        <label class="form-label">Reserva</label>
+        <input class="form-control" value="@($"Booking #{Model.BookingId}")" readonly />
+        <input type="hidden" asp-for="BookingId" />
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label asp-for="Amount" class="form-label"></label>
+            <input asp-for="Amount" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Método</label>
+            <select asp-for="Method" class="form-select">
+                @foreach (var m in methods)
+                {
+                    <option value="@m" selected="@(Model.Method == m ? "selected" : null)">@m</option>
+                }
+            </select>
+            <span asp-validation-for="Method" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Estado</label>
+            <select asp-for="Status" class="form-select">
+                @foreach (var s in statusOptions)
+                {
+                    <option value="@s" selected="@(Model.Status == s ? "selected" : null)">@s</option>
+                }
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-4">
+            <label asp-for="TransactionReference" class="form-label"></label>
+            <input asp-for="TransactionReference" class="form-control" />
+            <span asp-validation-for="TransactionReference" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="CardLast4" class="form-label"></label>
+            <input asp-for="CardLast4" class="form-control" maxlength="4" />
+            <span asp-validation-for="CardLast4" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ClientIp" class="form-label"></label>
+            <input asp-for="ClientIp" class="form-control" />
+            <span asp-validation-for="ClientIp" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

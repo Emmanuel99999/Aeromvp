@@ -1,0 +1,40 @@
+@model Aeromvp.Models.Passenger
+@{
+    ViewData["Title"] = "Detalle de pasajero";
+}
+
+<h1>Detalle de pasajero</h1>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PassengerId">Editar</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.FirstName @Model.LastName</dd>
+
+    <dt class="col-sm-3">Documento</dt>
+    <dd class="col-sm-9">@Model.DocumentType @Model.DocumentNumber</dd>
+
+    <dt class="col-sm-3">Fecha de nacimiento</dt>
+    <dd class="col-sm-9">@Model.DateOfBirth?.ToString("d") ?? "-"</dd>
+
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Email</dd>
+
+    <dt class="col-sm-3">Teléfono</dt>
+    <dd class="col-sm-9">@Model.PhoneNumber ?? "-"</dd>
+
+    <dt class="col-sm-3">Ubicación</dt>
+    <dd class="col-sm-9">@((string.Join(", ", new[] { Model.City, Model.Country }.Where(s => !string.IsNullOrWhiteSpace(s)))) ?? "-")</dd>
+
+    <dt class="col-sm-3">Creado</dt>
+    <dd class="col-sm-9">@Model.CreatedAtUtc.ToLocalTime().ToString("g")</dd>
+
+    @if (Model.UpdatedAtUtc.HasValue)
+    {
+        <dt class="col-sm-3">Actualizado</dt>
+        <dd class="col-sm-9">@Model.UpdatedAtUtc.Value.ToLocalTime().ToString("g")</dd>
+    }
+</dl>

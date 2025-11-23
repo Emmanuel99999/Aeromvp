@@ -1,0 +1,106 @@
+@model Aeromvp.Models.Booking
+@{
+    ViewData["Title"] = "Editar reserva";
+    var passengers = ViewData["Passengers"] as List<Aeromvp.Models.Passenger> ?? new();
+    var flights = ViewData["Flights"] as List<Aeromvp.Models.Flight> ?? new();
+    var fares = ViewData["Fares"] as List<Aeromvp.Models.Fare> ?? new();
+    string[] statusOptions = { "Pending", "Confirmed", "Cancelled" };
+}
+
+<h1>Editar reserva</h1>
+
+<form asp-action="Edit" method="post" class="card card-body shadow-sm">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <input type="hidden" asp-for="BookingId" />
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">Pasajero</label>
+            <select asp-for="PassengerId" class="form-select" required>
+                <option value="">Seleccione pasajero</option>
+                @foreach (var p in passengers)
+                {
+                    <option value="@p.PassengerId" selected="@(Model.PassengerId == p.PassengerId ? "selected" : null)">
+                        @($"{p.FirstName} {p.LastName}")
+                    </option>
+                }
+            </select>
+            <span asp-validation-for="PassengerId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Vuelo</label>
+            <select asp-for="FlightId" class="form-select" required>
+                <option value="">Seleccione vuelo</option>
+                @foreach (var f in flights)
+                {
+                    <option value="@f.FlightId" selected="@(Model.FlightId == f.FlightId ? "selected" : null)">
+                        @($"{f.FlightNumber} {f.OriginAirportCode}-{f.DestinationAirportCode}")
+                    </option>
+                }
+            </select>
+            <span asp-validation-for="FlightId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Tarifa</label>
+            <select asp-for="FareId" class="form-select" required>
+                <option value="">Seleccione tarifa</option>
+                @foreach (var fare in fares)
+                {
+                    <option value="@fare.FareId" selected="@(Model.FareId == fare.FareId ? "selected" : null)">
+                        @($"{fare.FareType} - {fare.TotalPrice:C}")
+                    </option>
+                }
+            </select>
+            <span asp-validation-for="FareId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-4">
+            <label asp-for="LocatorCode" class="form-label"></label>
+            <input asp-for="LocatorCode" class="form-control" readonly />
+            <span class="form-text">El código se genera automáticamente.</span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="TotalPrice" class="form-label"></label>
+            <input asp-for="TotalPrice" class="form-control" type="number" step="0.01" min="0" />
+            <span asp-validation-for="TotalPrice" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Estado</label>
+            <select asp-for="Status" class="form-select">
+                @foreach (var s in statusOptions)
+                {
+                    <option value="@s" selected="@(Model.Status == s ? "selected" : null)">@s</option>
+                }
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-4">
+            <label asp-for="PaymentId" class="form-label"></label>
+            <input asp-for="PaymentId" class="form-control" type="number" />
+            <span asp-validation-for="PaymentId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ExpiresAtUtc" class="form-label"></label>
+            <input asp-for="ExpiresAtUtc" class="form-control" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+            <span asp-validation-for="ExpiresAtUtc" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="CreatedAtUtc" class="form-label"></label>
+            <input asp-for="CreatedAtUtc" class="form-control" readonly />
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

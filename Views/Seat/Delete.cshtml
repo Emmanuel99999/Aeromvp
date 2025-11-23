@@ -1,0 +1,27 @@
+@model Aeromvp.Models.Seat
+@{
+    ViewData["Title"] = "Eliminar asiento";
+}
+
+<h1>Eliminar asiento</h1>
+
+<div class="alert alert-warning">
+    ¿Confirma que desea eliminar el asiento <strong>@Model.SeatNumber</strong>?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Leg</dt>
+    <dd class="col-sm-9">@Model.Leg?.LegId ?? Model.LegId</dd>
+
+    <dt class="col-sm-3">Cabina</dt>
+    <dd class="col-sm-9">@Model.CabinClass ?? "-"</dd>
+
+    <dt class="col-sm-3">Disponible</dt>
+    <dd class="col-sm-9">@((Model.IsAvailable ? "Sí" : "No"))</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="SeatId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

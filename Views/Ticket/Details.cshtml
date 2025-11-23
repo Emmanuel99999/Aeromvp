@@ -1,0 +1,61 @@
+@model Aeromvp.Models.Ticket
+@{
+    ViewData["Title"] = "Detalle de ticket";
+    string[] statusOptions = { "Pending", "Issued", "Used", "Refunded" };
+}
+
+<h1>Detalle de ticket</h1>
+
+<div class="mb-3 d-flex gap-2">
+    <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.TicketId">Editar</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Número</dt>
+    <dd class="col-sm-9">@Model.TicketNumber</dd>
+
+    <dt class="col-sm-3">Pasajero</dt>
+    <dd class="col-sm-9">@Model.Passenger?.FirstName @Model.Passenger?.LastName</dd>
+
+    <dt class="col-sm-3">Reserva</dt>
+    <dd class="col-sm-9">@Model.Booking?.LocatorCode ?? $"Booking {Model.BookingId}"</dd>
+
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">@Model.Flight?.FlightNumber ?? $"Flight {Model.FlightId}"</dd>
+
+    <dt class="col-sm-3">Tarifa</dt>
+    <dd class="col-sm-9">@Model.FareId</dd>
+
+    <dt class="col-sm-3">Estado</dt>
+    <dd class="col-sm-9">@Model.Status</dd>
+
+    <dt class="col-sm-3">Precio final</dt>
+    <dd class="col-sm-9">@Model.FinalPrice.ToString("C")</dd>
+
+    <dt class="col-sm-3">Correo de entrega</dt>
+    <dd class="col-sm-9">@Model.DeliveryEmail</dd>
+
+    <dt class="col-sm-3">Emitido</dt>
+    <dd class="col-sm-9">@Model.IssuedAtUtc.ToLocalTime().ToString("g")</dd>
+
+    @if (Model.UpdatedAtUtc.HasValue)
+    {
+        <dt class="col-sm-3">Actualizado</dt>
+        <dd class="col-sm-9">@Model.UpdatedAtUtc.Value.ToLocalTime().ToString("g")</dd>
+    }
+</dl>
+
+<form asp-action="ChangeStatus" method="post" class="mt-3 d-flex align-items-end gap-2">
+    <input type="hidden" name="id" value="@Model.TicketId" />
+    <div>
+        <label for="newStatus" class="form-label">Cambiar estado</label>
+        <select id="newStatus" name="newStatus" class="form-select">
+            @foreach (var status in statusOptions)
+            {
+                <option value="@status" selected="@(Model.Status == status ? "selected" : null)">@status</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-secondary">Actualizar</button>
+</form>

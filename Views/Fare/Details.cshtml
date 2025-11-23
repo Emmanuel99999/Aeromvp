@@ -1,0 +1,43 @@
+@model Aeromvp.Models.Fare
+@{
+    ViewData["Title"] = "Detalle de tarifa";
+}
+
+<h1>Detalle de tarifa</h1>
+
+<div class="mb-3">
+    <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.FareId">Editar</a>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Tipo</dt>
+    <dd class="col-sm-9">@Model.FareType</dd>
+
+    <dt class="col-sm-3">Vuelo</dt>
+    <dd class="col-sm-9">@(Model.Flight != null ? $"{Model.Flight.FlightNumber} {Model.Flight.OriginAirportCode}-{Model.Flight.DestinationAirportCode}" : "-")</dd>
+
+    <dt class="col-sm-3">Cabina</dt>
+    <dd class="col-sm-9">@Model.CabinClass ?? "-"</dd>
+
+    <dt class="col-sm-3">Base</dt>
+    <dd class="col-sm-9">@Model.BaseFare.ToString("C")</dd>
+
+    <dt class="col-sm-3">Impuestos</dt>
+    <dd class="col-sm-9">@Model.Taxes.ToString("C")</dd>
+
+    <dt class="col-sm-3">Cargos</dt>
+    <dd class="col-sm-9">@Model.AdditionalFees.ToString("C")</dd>
+
+    <dt class="col-sm-3">Total</dt>
+    <dd class="col-sm-9">@Model.TotalPrice.ToString("C")</dd>
+
+    <dt class="col-sm-3">Reembolso</dt>
+    <dd class="col-sm-9">@((Model.AllowRefund ? "Permitido" : "No"))</dd>
+
+    <dt class="col-sm-3">Cambios</dt>
+    <dd class="col-sm-9">@((Model.AllowChanges ? "Permitidos" : "No"))</dd>
+
+    <dt class="col-sm-3">Condiciones</dt>
+    <dd class="col-sm-9">@Model.Conditions ?? "N/A"</dd>
+</dl>
