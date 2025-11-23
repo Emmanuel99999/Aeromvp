@@ -1,0 +1,86 @@
+﻿@model Aeromvp.Models.Flight
+
+@{
+    ViewData["Title"] = "Confirmar vuelo";
+}
+
+<div class="container my-4">
+    <h1 class="mb-3">Confirmar vuelo</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h5 class="card-title mb-3">
+                @(
+                    string.IsNullOrWhiteSpace(Model.MarketingAirline)
+                    ? (Model.OperatingAirline ?? "Aerolínea")
+                    : Model.MarketingAirline
+                    )
+                <small class="text-muted">(@Model.FlightNumber)</small>
+            </h5>
+
+            <div class="row mb-3">
+                <div class="col-md-4 mb-2">
+                    <h6 class="text-muted mb-1">Origen</h6>
+                    <p class="mb-0 fw-semibold">@Model.OriginAirportCode</p>
+                    <small class="text-muted">
+                        Salida: @Model.DepartureTimeUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                    </small>
+                </div>
+
+                <div class="col-md-4 mb-2 text-center">
+                    <h6 class="text-muted mb-1">Duración</h6>
+                    <p class="mb-0">
+                        @{
+                            var horas = Model.DurationMinutes / 60;
+                            var minutos = Model.DurationMinutes % 60;
+                        }
+                        @horas h @minutos min
+                    </p>
+                    <small class="text-muted">
+                        Estado: @Model.Status
+                    </small>
+                </div>
+
+                <div class="col-md-4 mb-2 text-md-end">
+                    <h6 class="text-muted mb-1">Destino</h6>
+                    <p class="mb-0 fw-semibold">@Model.DestinationAirportCode</p>
+                    <small class="text-muted">
+                        Llegada: @Model.ArrivalTimeUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                    </small>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row align-items-center mb-3">
+                <div class="col-md-6 mb-2">
+                    <h6 class="text-muted mb-1">Capacidad total</h6>
+                    <p class="mb-0">@Model.TotalSeats asientos</p>
+                </div>
+
+                <div class="col-md-6 mb-2 text-md-end">
+                    <h6 class="text-muted mb-1">Identificador interno</h6>
+                    <p class="mb-0">FlightId: @Model.FlightId</p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-between">
+                <a asp-controller="Flight"
+                   asp-action="Results"
+                   class="btn btn-outline-secondary">
+                    ⬅ Volver a resultados
+                </a>
+
+                <!-- Ajusta esta ruta según tu flujo de creación de Booking -->
+                <a asp-controller="Booking"
+                   asp-action="Create"
+                   asp-route-flightId="@Model.FlightId"
+                   class="btn btn-primary">
+                    Continuar con la reserva
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

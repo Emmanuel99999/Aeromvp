@@ -26,6 +26,25 @@ namespace Aeromvp.Controllers
             return View(bookings);
         }
 
+        // =========================
+        // SELECT: Booking/Select/{id}
+        // id = FlightId
+        // =========================
+        [HttpGet]
+        public async Task<IActionResult> Select(int id)
+        {
+            // Buscamos el vuelo por FlightId (no por Id genérico)
+            var flight = await _context.Flights
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.FlightId == id);
+
+            if (flight == null)
+                return NotFound();
+
+            // Vista fuertemente tipada a Flight: Views/Booking/Select.cshtml
+            return View(flight);
+        }
+
         // GET: Booking/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,13 +64,25 @@ namespace Aeromvp.Controllers
             return View(booking);
         }
 
-        // GET: Booking/Create
-        public IActionResult Create()
+        // ==============================================
+        // GET: Booking/Create  (opcionalmente con flightId)
+        // Booking/Create?flightId=44
+        // ==============================================
+        public IActionResult Create(int? flightId)
         {
             ViewData["Passengers"] = _context.Passengers.ToList();
             ViewData["Flights"] = _context.Flights.ToList();
             ViewData["Fares"] = _context.Fares.ToList();
-            return View();
+
+            var booking = new Booking();
+
+            // Si venimos desde Select, preasignamos el vuelo
+            if (flightId.HasValue)
+            {
+                booking.FlightId = flightId.Value;
+            }
+
+            return View(booking);
         }
 
         // POST: Booking/Create

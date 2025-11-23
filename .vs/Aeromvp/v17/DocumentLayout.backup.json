@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\migrations\\20251123201539_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:migrations\\20251123201539_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\views\\booking\\select.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:views\\booking\\select.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|solutionrelative:models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E2A9130-42BC-4A90-AFBF-941458628F8E}|Aeromvp.csproj|c:\\users\\emmanuel\\source\\repos\\emmanuel99999\\aeromvp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,60 +45,73 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20251123201539_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Migrations\\20251123201539_InitialCreate.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251123201539_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Migrations\\20251123201539_InitialCreate.cs",
-              "RelativeToolTip": "Migrations\\20251123201539_InitialCreate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T20:15:39.886Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-23T20:01:23.363Z",
+              "DocumentIndex": 0,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Controllers\\BookingController.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAgwLQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T21:10:20.545Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Flight.cs",
+              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Models\\Flight.cs",
+              "RelativeDocumentMoniker": "Models\\Flight.cs",
+              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Models\\Flight.cs",
+              "RelativeToolTip": "Models\\Flight.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAqwDIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T21:07:49.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Select.cshtml",
+              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Views\\Booking\\Select.cshtml",
+              "RelativeDocumentMoniker": "Views\\Booking\\Select.cshtml",
+              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Views\\Booking\\Select.cshtml",
+              "RelativeToolTip": "Views\\Booking\\Select.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-23T21:07:05.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T20:01:02.672Z",
+              "WhenOpened": "2025-11-23T20:35:18.194Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAswEIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T20:00:17.358Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-23T20:33:39.523Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }
