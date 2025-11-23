@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,10 +41,6 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "home.css",
@@ -54,8 +50,7 @@
               "RelativeToolTip": "wwwroot\\css\\home.css",
               "ViewState": "AgIAALcAAAAAAAAAAAAowNwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-23T17:24:54.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T17:24:54.026Z"
             },
             {
               "$type": "Document",
@@ -67,8 +62,7 @@
               "RelativeToolTip": "wwwroot\\css\\styles.css",
               "ViewState": "AgIAAKABAAAAAAAAAADwv8IBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-23T04:10:01.27Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T04:10:01.27Z"
             },
             {
               "$type": "Document",
@@ -90,10 +84,14 @@
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\EMMANUEL\\source\\repos\\Emmanuel99999\\Aeromvp\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAL8AAAAAAAAAAAAowOAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAowNQAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-23T03:52:05.308Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         }

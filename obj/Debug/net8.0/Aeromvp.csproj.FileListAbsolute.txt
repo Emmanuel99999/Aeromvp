@@ -88,3 +88,4 @@ C:\Users\EMMANUEL\source\repos\Emmanuel99999\Aeromvp\obj\Debug\net8.0\refint\Aer
 C:\Users\EMMANUEL\source\repos\Emmanuel99999\Aeromvp\obj\Debug\net8.0\Aeromvp.pdb
 C:\Users\EMMANUEL\source\repos\Emmanuel99999\Aeromvp\obj\Debug\net8.0\Aeromvp.genruntimeconfig.cache
 C:\Users\EMMANUEL\source\repos\Emmanuel99999\Aeromvp\obj\Debug\net8.0\ref\Aeromvp.dll
+C:\Users\EMMANUEL\source\repos\Emmanuel99999\Aeromvp\obj\Debug\net8.0\Aeromvp.sourcelink.json
