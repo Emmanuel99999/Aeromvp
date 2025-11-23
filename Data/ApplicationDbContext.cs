@@ -20,10 +20,16 @@ namespace Aeromvp.Data
         public DbSet<Ticket> Tickets { get; set; } = null!;
         public DbSet<Seat> Seats { get; set; } = null!;
 
-        // Si luego quieres configurar algo extra:
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
-        // }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Relación 1:1 Booking-Payment con Payment como dependiente (FK BookingId)
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Payment)
+                .WithOne(p => p.Booking)
+                .HasForeignKey<Payment>(p => p.BookingId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

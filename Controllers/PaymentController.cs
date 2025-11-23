@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+ï»¿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Aeromvp.Data;
 using Aeromvp.Models;
@@ -59,7 +59,7 @@ namespace Aeromvp.Controllers
                 return View(payment);
             }
 
-            // Validación extra: el booking debe existir
+            // ValidaciÃ³n extra: el booking debe existir
             var booking = await _context.Bookings.FindAsync(payment.BookingId);
             if (booking == null)
             {
@@ -71,12 +71,12 @@ namespace Aeromvp.Controllers
 
             _context.Add(payment);
 
-            // Si el pago se aprueba, actualizamos la reserva
+            // Guardamos primero para obtener el PaymentId generado
+            await _context.SaveChangesAsync();
+
+            booking.PaymentId = payment.PaymentId;
             if (payment.Status == "Approved")
-            {
                 booking.Status = "Confirmed";
-                booking.PaymentId = payment.PaymentId;
-            }
 
             await _context.SaveChangesAsync();
 
@@ -110,14 +110,17 @@ namespace Aeromvp.Controllers
                 payment.UpdatedAtUtc = DateTime.UtcNow;
                 _context.Update(payment);
 
-                // Validación adicional: si se marca Approved, actualizar reserva
+                // ValidaciÃ³n adicional: si se marca Approved, actualizar reserva
                 var booking = await _context.Bookings
                     .FirstOrDefaultAsync(b => b.BookingId == payment.BookingId);
 
                 if (booking != null)
                 {
                     if (payment.Status == "Approved")
+                    {
                         booking.Status = "Confirmed";
+                        booking.PaymentId ??= payment.PaymentId;
+                    }
                     else if (payment.Status == "Rejected")
                         booking.Status = "Pending";
                 }
@@ -169,3 +172,4 @@ namespace Aeromvp.Controllers
         }
     }
 }
+
