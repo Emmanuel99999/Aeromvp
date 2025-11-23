@@ -1,0 +1,61 @@
+@model Aeromvp.ViewModels.FlightSearchInputViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Buscar vuelos";
+}
+
+<section class="container">
+    <h1>Buscar vuelos</h1>
+    <p>Ingresa los datos del viaje para ver opciones disponibles.</p>
+
+    <form asp-action="SearchResults" method="post" class="form-grid">
+        <div class="form-field">
+            <label asp-for="OriginCode"></label>
+            <input asp-for="OriginCode" class="input" placeholder="Ej: MDE" />
+            <span asp-validation-for="OriginCode" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="DestinationCode"></label>
+            <input asp-for="DestinationCode" class="input" placeholder="Ej: BOG" />
+            <span asp-validation-for="DestinationCode" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="DepartureDate"></label>
+            <input asp-for="DepartureDate" class="input" type="date" />
+            <span asp-validation-for="DepartureDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="ReturnDate"></label>
+            <input asp-for="ReturnDate" class="input" type="date" />
+            <span asp-validation-for="ReturnDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="Adults"></label>
+            <input asp-for="Adults" class="input" type="number" min="1" max="9" />
+            <span asp-validation-for="Adults" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="Children"></label>
+            <input asp-for="Children" class="input" type="number" min="0" max="9" />
+            <span asp-validation-for="Children" class="text-danger"></span>
+        </div>
+
+        <div class="form-field">
+            <label asp-for="Infants"></label>
+            <input asp-for="Infants" class="input" type="number" min="0" max="9" />
+            <span asp-validation-for="Infants" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
