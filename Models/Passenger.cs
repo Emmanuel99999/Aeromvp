@@ -51,7 +51,7 @@ namespace Aeromvp.Models
 
         public DateTime? UpdatedAtUtc { get; set; }
 
-        // Navegación (relaciones)
+
         public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
         public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
